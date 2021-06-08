@@ -1,6 +1,6 @@
 package dev.latvian.kubejs.recipe;
 
-import me.shedaniel.architectury.registry.Registries;
+import dev.architectury.registry.registries.Registries;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;

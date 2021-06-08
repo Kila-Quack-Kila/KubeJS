@@ -1,6 +1,8 @@
 package dev.latvian.kubejs.item;
 
 import com.google.gson.JsonObject;
+import dev.architectury.injectables.annotations.ExpectPlatform;
+import dev.architectury.registry.block.ToolType;
 import dev.latvian.kubejs.KubeJS;
 import dev.latvian.kubejs.KubeJSRegistries;
 import dev.latvian.kubejs.bindings.RarityWrapper;
@@ -8,8 +10,6 @@ import dev.latvian.kubejs.item.custom.ItemType;
 import dev.latvian.kubejs.text.Text;
 import dev.latvian.kubejs.util.BuilderBase;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
-import me.shedaniel.architectury.annotations.ExpectPlatform;
-import me.shedaniel.architectury.registry.ToolType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ArmorMaterials;

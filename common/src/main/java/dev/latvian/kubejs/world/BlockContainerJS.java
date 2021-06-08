@@ -1,5 +1,8 @@
 package dev.latvian.kubejs.world;
 
+import dev.architectury.hooks.level.entity.PlayerHooks;
+import dev.architectury.injectables.annotations.ExpectPlatform;
+import dev.architectury.registry.registries.Registries;
 import dev.latvian.kubejs.KubeJSRegistries;
 import dev.latvian.kubejs.block.MaterialJS;
 import dev.latvian.kubejs.block.MaterialListJS;
@@ -13,9 +16,6 @@ import dev.latvian.kubejs.player.ServerPlayerJS;
 import dev.latvian.kubejs.util.MapJS;
 import dev.latvian.kubejs.util.Tags;
 import dev.latvian.kubejs.util.UtilsJS;
-import me.shedaniel.architectury.annotations.ExpectPlatform;
-import me.shedaniel.architectury.hooks.PlayerHooks;
-import me.shedaniel.architectury.registry.Registries;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -216,7 +216,7 @@ public class BlockContainerJS {
 			MapJS entityData = MapJS.of(entity.save(new CompoundTag()));
 
 			if (entityData != null) {
-				entityData.changeListener = o -> entity.load(entity.getBlockState(), MapJS.nbt(o));
+				entityData.changeListener = o -> entity.load(MapJS.nbt(o));
 				return entityData;
 			}
 		}

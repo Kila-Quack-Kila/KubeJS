@@ -1,8 +1,8 @@
 package dev.latvian.kubejs.fluid;
 
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.latvian.kubejs.KubeJSObjects;
 import dev.latvian.kubejs.KubeJSRegistries;
-import me.shedaniel.architectury.annotations.ExpectPlatform;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.material.FlowingFluid;
 

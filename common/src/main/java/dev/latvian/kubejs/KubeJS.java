@@ -1,5 +1,9 @@
 package dev.latvian.kubejs;
 
+import dev.architectury.platform.Mod;
+import dev.architectury.platform.Platform;
+import dev.architectury.registry.CreativeTabRegistry;
+import dev.architectury.utils.EnvExecutor;
 import dev.latvian.kubejs.block.BlockRegistryEventJS;
 import dev.latvian.kubejs.block.KubeJSBlockEventHandler;
 import dev.latvian.kubejs.client.KubeJSClient;
@@ -24,10 +28,6 @@ import dev.latvian.kubejs.server.KubeJSServerEventHandler;
 import dev.latvian.kubejs.util.KubeJSPlugins;
 import dev.latvian.kubejs.util.UtilsJS;
 import dev.latvian.kubejs.world.KubeJSWorldEventHandler;
-import me.shedaniel.architectury.platform.Mod;
-import me.shedaniel.architectury.platform.Platform;
-import me.shedaniel.architectury.registry.CreativeTabs;
-import me.shedaniel.architectury.utils.EnvExecutor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -120,7 +120,7 @@ public class KubeJS {
 		}
 
 		if (!CommonProperties.get().serverOnly) {
-			tab = CreativeTabs.create(new ResourceLocation(KubeJS.MOD_ID, KubeJS.MOD_ID), () -> new ItemStack(Items.PURPLE_DYE));
+			tab = CreativeTabRegistry.create(new ResourceLocation(KubeJS.MOD_ID, KubeJS.MOD_ID), () -> new ItemStack(Items.PURPLE_DYE));
 		}
 
 		startupScriptManager.unload();

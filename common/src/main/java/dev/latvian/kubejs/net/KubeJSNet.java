@@ -1,7 +1,7 @@
 package dev.latvian.kubejs.net;
 
+import dev.architectury.networking.NetworkChannel;
 import dev.latvian.kubejs.KubeJS;
-import me.shedaniel.architectury.networking.NetworkChannel;
 import net.minecraft.resources.ResourceLocation;
 
 /**

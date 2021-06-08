@@ -1,10 +1,10 @@
 package dev.latvian.kubejs.script;
 
+import dev.architectury.injectables.targets.ArchitecturyTarget;
+import dev.architectury.platform.Mod;
+import dev.architectury.platform.Platform;
+import dev.architectury.utils.Env;
 import dev.latvian.kubejs.KubeJS;
-import me.shedaniel.architectury.platform.Mod;
-import me.shedaniel.architectury.platform.Platform;
-import me.shedaniel.architectury.targets.ArchitecturyTarget;
-import me.shedaniel.architectury.utils.Env;
 import net.minecraft.SharedConstants;
 
 import java.util.LinkedHashMap;

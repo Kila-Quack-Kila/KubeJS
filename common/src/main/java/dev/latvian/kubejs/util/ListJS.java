@@ -2,7 +2,7 @@ package dev.latvian.kubejs.util;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import me.shedaniel.architectury.utils.NbtType;
+import dev.architectury.utils.NbtType;
 import net.minecraft.nbt.ByteArrayTag;
 import net.minecraft.nbt.CollectionTag;
 import net.minecraft.nbt.IntArrayTag;

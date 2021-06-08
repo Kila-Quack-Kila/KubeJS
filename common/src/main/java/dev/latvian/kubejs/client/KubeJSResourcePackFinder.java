@@ -4,6 +4,7 @@ import dev.latvian.kubejs.KubeJS;
 import dev.latvian.kubejs.KubeJSPaths;
 import dev.latvian.kubejs.util.UtilsJS;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
@@ -19,6 +20,12 @@ import java.util.function.Consumer;
  * @author LatvianModder
  */
 public class KubeJSResourcePackFinder implements RepositorySource {
+	private final PackType packType;
+
+	public KubeJSResourcePackFinder(PackType packType) {
+		this.packType = packType;
+	}
+
 	@Override
 	public void loadPacks(Consumer<Pack> nameToPackMap, Pack.PackConstructor packInfoFactory) {
 		if (Files.notExists(KubeJSPaths.ASSETS)) {
@@ -43,6 +50,6 @@ public class KubeJSResourcePackFinder implements RepositorySource {
 
 		KubeJSClientResourcePack pack = new KubeJSClientResourcePack();
 		PackMetadataSection metadataSection = new PackMetadataSection(new TextComponent("./kubejs/assets/"), 6);
-		nameToPackMap.accept(new Pack("kubejs:resource_pack", true, () -> pack, pack, metadataSection, Pack.Position.TOP, PackSource.BUILT_IN));
+		nameToPackMap.accept(new Pack("kubejs:resource_pack", new TextComponent("kubejs:resource_pack"), true, () -> pack, metadataSection, packType, Pack.Position.TOP, PackSource.BUILT_IN));
 	}
 }

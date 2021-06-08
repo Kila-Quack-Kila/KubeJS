@@ -22,8 +22,4 @@ public abstract class SimpleReloadableResourceManagerMixin implements SimpleRelo
 	@Override
 	@Accessor("listeners")
 	public abstract List<PreparableReloadListener> getReloadListenersKJS();
-
-	@Override
-	@Accessor("recentlyRegistered")
-	public abstract List<PreparableReloadListener> getInitTaskQueueKJS();
 }

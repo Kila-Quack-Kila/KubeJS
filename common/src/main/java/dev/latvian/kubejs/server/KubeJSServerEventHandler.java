@@ -1,6 +1,11 @@
 package dev.latvian.kubejs.server;
 
 import com.mojang.brigadier.CommandDispatcher;
+import dev.architectury.event.EventResult;
+import dev.architectury.event.events.common.CommandPerformEvent;
+import dev.architectury.event.events.common.CommandRegistrationEvent;
+import dev.architectury.event.events.common.LifecycleEvent;
+import dev.architectury.event.events.common.TickEvent;
 import dev.latvian.kubejs.KubeJSEvents;
 import dev.latvian.kubejs.command.KubeJSCommands;
 import dev.latvian.kubejs.player.PlayerDataJS;
@@ -11,15 +16,10 @@ import dev.latvian.kubejs.world.ServerWorldJS;
 import dev.latvian.kubejs.world.SimpleWorldEventJS;
 import dev.latvian.kubejs.world.WorldJS;
 import dev.latvian.mods.rhino.RhinoException;
-import me.shedaniel.architectury.event.events.CommandPerformEvent;
-import me.shedaniel.architectury.event.events.CommandRegistrationEvent;
-import me.shedaniel.architectury.event.events.LifecycleEvent;
-import me.shedaniel.architectury.event.events.TickEvent;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
@@ -151,10 +151,10 @@ public class KubeJSServerEventHandler {
 		new ServerEventJS().post(ScriptType.SERVER, KubeJSEvents.SERVER_TICK);
 	}
 
-	public static InteractionResult command(CommandPerformEvent event) {
+	public static EventResult command(CommandPerformEvent event) {
 		if (new CommandEventJS(event).post(ScriptType.SERVER, KubeJSEvents.COMMAND_RUN)) {
-			return InteractionResult.FAIL;
+			return EventResult.interruptFalse();
 		}
-		return InteractionResult.PASS;
+		return EventResult.pass();
 	}
 }

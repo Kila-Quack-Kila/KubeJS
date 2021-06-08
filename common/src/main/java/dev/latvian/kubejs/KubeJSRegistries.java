@@ -1,7 +1,7 @@
 package dev.latvian.kubejs;
 
-import me.shedaniel.architectury.registry.Registries;
-import me.shedaniel.architectury.registry.Registry;
+import dev.architectury.registry.registries.Registrar;
+import dev.architectury.registry.registries.Registries;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -15,31 +15,31 @@ import static net.minecraft.core.Registry.*;
 public class KubeJSRegistries {
 	private static final Registries REGISTRIES = Registries.get(KubeJS.MOD_ID);
 
-	public static Registry<Block> blocks() {
+	public static Registrar<Block> blocks() {
 		return REGISTRIES.get(BLOCK_REGISTRY);
 	}
 
-	public static Registry<BlockEntityType<?>> blockEntities() {
+	public static Registrar<BlockEntityType<?>> blockEntities() {
 		return REGISTRIES.get(BLOCK_ENTITY_TYPE_REGISTRY);
 	}
 
-	public static Registry<Item> items() {
+	public static Registrar<Item> items() {
 		return REGISTRIES.get(ITEM_REGISTRY);
 	}
 
-	public static Registry<Fluid> fluids() {
+	public static Registrar<Fluid> fluids() {
 		return REGISTRIES.get(FLUID_REGISTRY);
 	}
 
-	public static Registry<EntityType<?>> entityTypes() {
+	public static Registrar<EntityType<?>> entityTypes() {
 		return REGISTRIES.get(ENTITY_TYPE_REGISTRY);
 	}
 
-	public static Registry<SoundEvent> soundEvents() {
+	public static Registrar<SoundEvent> soundEvents() {
 		return REGISTRIES.get(SOUND_EVENT_REGISTRY);
 	}
 
-	public static Registry<RecipeSerializer<?>> recipeSerializers() {
+	public static Registrar<RecipeSerializer<?>> recipeSerializers() {
 		return REGISTRIES.get(RECIPE_SERIALIZER_REGISTRY);
 	}
 }

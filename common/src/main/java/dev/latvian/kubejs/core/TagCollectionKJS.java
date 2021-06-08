@@ -16,13 +16,11 @@ public interface TagCollectionKJS<T> {
 	default void customTagsKJS(Map<ResourceLocation, Tag.Builder> map) {
 		TagIngredientJS.clearTagCache();
 		String c = getResourceLocationPrefixKJS().substring(5);
-		String t = getItemTypeNameKJS();
+		String t = getResourceLocationPrefixKJS().substring(getResourceLocationPrefixKJS().lastIndexOf('/') + 1);
 		new TagEventJS<T>(c, map, getRegistryKJS()).post(t + ".tags");
 	}
 
 	Function<ResourceLocation, Optional<T>> getRegistryKJS();
 
 	String getResourceLocationPrefixKJS();
-
-	String getItemTypeNameKJS();
 }

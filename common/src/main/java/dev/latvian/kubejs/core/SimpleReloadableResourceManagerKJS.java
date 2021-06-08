@@ -13,6 +13,4 @@ public interface SimpleReloadableResourceManagerKJS {
 	Map<String, FallbackResourceManager> getNamespaceResourceManagersKJS();
 
 	List<PreparableReloadListener> getReloadListenersKJS();
-
-	List<PreparableReloadListener> getInitTaskQueueKJS();
 }

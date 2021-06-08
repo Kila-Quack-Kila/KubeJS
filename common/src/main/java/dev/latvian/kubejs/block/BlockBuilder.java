@@ -2,10 +2,10 @@ package dev.latvian.kubejs.block;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import dev.architectury.registry.block.BlockProperties;
+import dev.architectury.registry.block.ToolType;
 import dev.latvian.kubejs.util.BuilderBase;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
-import me.shedaniel.architectury.registry.BlockProperties;
-import me.shedaniel.architectury.registry.ToolType;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;

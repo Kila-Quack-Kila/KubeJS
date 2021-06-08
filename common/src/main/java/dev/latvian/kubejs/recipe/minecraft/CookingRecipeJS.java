@@ -1,8 +1,8 @@
 package dev.latvian.kubejs.recipe.minecraft;
 
+import dev.architectury.platform.Platform;
 import dev.latvian.kubejs.recipe.RecipeJS;
 import dev.latvian.kubejs.util.ListJS;
-import me.shedaniel.architectury.platform.Platform;
 
 /**
  * @author LatvianModder

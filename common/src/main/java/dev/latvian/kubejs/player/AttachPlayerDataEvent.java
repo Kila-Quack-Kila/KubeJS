@@ -1,9 +1,9 @@
 package dev.latvian.kubejs.player;
 
+import dev.architectury.event.Event;
+import dev.architectury.event.EventFactory;
 import dev.latvian.kubejs.script.AttachDataEvent;
 import dev.latvian.kubejs.script.DataType;
-import me.shedaniel.architectury.event.Event;
-import me.shedaniel.architectury.event.EventFactory;
 
 import java.util.function.Consumer;
 

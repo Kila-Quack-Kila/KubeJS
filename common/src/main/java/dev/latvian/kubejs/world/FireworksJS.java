@@ -1,11 +1,11 @@
 package dev.latvian.kubejs.world;
 
+import dev.architectury.hooks.DyeColorHooks;
 import dev.latvian.kubejs.core.FireworkRocketEntityKJS;
 import dev.latvian.kubejs.text.TextColor;
 import dev.latvian.kubejs.util.ListJS;
 import dev.latvian.kubejs.util.MapJS;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
-import me.shedaniel.architectury.hooks.DyeColorHooks;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;

@@ -2,6 +2,7 @@ package dev.latvian.kubejs.server;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import dev.architectury.registry.registries.Registrar;
 import dev.latvian.kubejs.KubeJS;
 import dev.latvian.kubejs.KubeJSPaths;
 import dev.latvian.kubejs.KubeJSRegistries;
@@ -311,7 +312,7 @@ public class TagEventJS<T> extends EventJS {
 	private int addedCount;
 	private int removedCount;
 	private List<Predicate<String>> globalPriorityList;
-	private me.shedaniel.architectury.registry.Registry<T> actualRegistry;
+	private Registrar<T> actualRegistry;
 
 	public TagEventJS(String t, Map<ResourceLocation, SetTag.Builder> m, Function<ResourceLocation, Optional<T>> r) {
 		type = t;

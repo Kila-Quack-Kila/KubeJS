@@ -3,6 +3,8 @@ package dev.latvian.kubejs.fluid;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import dev.architectury.fluid.FluidStack;
+import dev.architectury.registry.registries.Registries;
 import dev.latvian.kubejs.KubeJSRegistries;
 import dev.latvian.kubejs.recipe.RecipeExceptionJS;
 import dev.latvian.kubejs.util.Copyable;
@@ -12,8 +14,6 @@ import dev.latvian.kubejs.util.Tags;
 import dev.latvian.kubejs.util.UtilsJS;
 import dev.latvian.kubejs.util.WrappedJS;
 import dev.latvian.kubejs.util.WrappedJSObjectChangeListener;
-import me.shedaniel.architectury.fluid.FluidStack;
-import me.shedaniel.architectury.registry.Registries;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
@@ -49,7 +49,7 @@ public abstract class FluidStackJS implements WrappedJS, Copyable, WrappedJSObje
 			}
 
 			String[] s1 = s.split(" ", 2);
-			return new UnboundFluidStackJS(new ResourceLocation(s1[0])).withAmount(UtilsJS.parseInt(s1.length == 2 ? s1[1] : "", FluidStack.bucketAmount().intValue()));
+			return new UnboundFluidStackJS(new ResourceLocation(s1[0])).withAmount(UtilsJS.parseInt(s1.length == 2 ? s1[1] : "", (int) FluidStack.bucketAmount()));
 		}
 
 		MapJS map = MapJS.of(o);
@@ -104,7 +104,7 @@ public abstract class FluidStackJS implements WrappedJS, Copyable, WrappedJSObje
 			throw new RecipeExceptionJS(json + " is not a valid fluid!");
 		}
 
-		int amount = FluidStack.bucketAmount().intValue();
+		int amount = (int) FluidStack.bucketAmount();
 		Object nbt = null;
 
 		if (json.has("amount")) {
@@ -221,7 +221,7 @@ public abstract class FluidStackJS implements WrappedJS, Copyable, WrappedJSObje
 		builder.append("Fluid.of('");
 		builder.append(getId());
 
-		if (amount != FluidStack.bucketAmount().intValue()) {
+		if (amount != (int) FluidStack.bucketAmount()) {
 			builder.append(", ");
 			builder.append(amount);
 		}
@@ -239,7 +239,7 @@ public abstract class FluidStackJS implements WrappedJS, Copyable, WrappedJSObje
 		JsonObject o = new JsonObject();
 		o.addProperty("fluid", getId());
 
-		if (getAmount() != FluidStack.bucketAmount().intValue()) {
+		if (getAmount() != (int) FluidStack.bucketAmount()) {
 			o.addProperty("amount", getAmount());
 		}
 

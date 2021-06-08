@@ -58,22 +58,22 @@ public class ServerPlayerJS extends PlayerJS<ServerPlayer> {
 	}
 
 	public void setCreativeMode(boolean mode) {
-		minecraftPlayer.gameMode.setGameModeForPlayer(mode ? GameType.CREATIVE : GameType.SURVIVAL);
+		minecraftPlayer.gameMode.changeGameModeForPlayer(mode ? GameType.CREATIVE : GameType.SURVIVAL);
 	}
 
 	public void setGameMode(String mode) {
 		switch (mode) {
 			case "survival":
-				minecraftPlayer.gameMode.setGameModeForPlayer(GameType.SURVIVAL);
+				minecraftPlayer.gameMode.changeGameModeForPlayer(GameType.SURVIVAL);
 				break;
 			case "creative":
-				minecraftPlayer.gameMode.setGameModeForPlayer(GameType.CREATIVE);
+				minecraftPlayer.gameMode.changeGameModeForPlayer(GameType.CREATIVE);
 				break;
 			case "adventure":
-				minecraftPlayer.gameMode.setGameModeForPlayer(GameType.ADVENTURE);
+				minecraftPlayer.gameMode.changeGameModeForPlayer(GameType.ADVENTURE);
 				break;
 			case "spectator":
-				minecraftPlayer.gameMode.setGameModeForPlayer(GameType.SPECTATOR);
+				minecraftPlayer.gameMode.changeGameModeForPlayer(GameType.SPECTATOR);
 				break;
 		}
 	}
@@ -152,8 +152,8 @@ public class ServerPlayerJS extends PlayerJS<ServerPlayer> {
 	public void setMouseItem(ItemStackJS item) {
 		super.setMouseItem(item);
 
-		if (minecraftPlayer.connection != null) {
-			minecraftPlayer.broadcastCarriedItem();
+		if (minecraftPlayer.containerMenu != null) {
+			minecraftPlayer.containerMenu.broadcastChanges();
 		}
 	}
 

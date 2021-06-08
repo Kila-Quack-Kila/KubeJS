@@ -1,6 +1,7 @@
 package dev.latvian.kubejs.player;
 
 import com.mojang.authlib.GameProfile;
+import dev.architectury.hooks.level.entity.PlayerHooks;
 import dev.latvian.kubejs.docs.MinecraftClass;
 import dev.latvian.kubejs.entity.LivingEntityJS;
 import dev.latvian.kubejs.item.InventoryJS;
@@ -10,13 +11,13 @@ import dev.latvian.kubejs.util.AttachedData;
 import dev.latvian.kubejs.util.Overlay;
 import dev.latvian.kubejs.util.WithAttachedData;
 import dev.latvian.kubejs.world.WorldJS;
-import me.shedaniel.architectury.hooks.PlayerHooks;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -61,7 +62,7 @@ public abstract class PlayerJS<E extends Player> extends LivingEntityJS implemen
 
 	public InventoryJS getInventory() {
 		if (inventory == null) {
-			inventory = new InventoryJS(minecraftPlayer.inventory) {
+			inventory = new InventoryJS(minecraftPlayer.getInventory()) {
 				@Override
 				public void markDirty() {
 					sendInventoryUpdate();
@@ -73,7 +74,7 @@ public abstract class PlayerJS<E extends Player> extends LivingEntityJS implemen
 	}
 
 	public void sendInventoryUpdate() {
-		minecraftPlayer.inventory.setChanged();
+		minecraftPlayer.getInventory().setChanged();
 		minecraftPlayer.inventoryMenu.broadcastChanges();
 	}
 
@@ -86,19 +87,24 @@ public abstract class PlayerJS<E extends Player> extends LivingEntityJS implemen
 	}
 
 	public int getSelectedSlot() {
-		return minecraftPlayer.inventory.selected;
+		return minecraftPlayer.getInventory().selected;
 	}
 
 	public void setSelectedSlot(int index) {
-		minecraftPlayer.inventory.selected = Mth.clamp(index, 0, 8);
+		minecraftPlayer.getInventory().selected = Mth.clamp(index, 0, 8);
 	}
 
 	public ItemStackJS getMouseItem() {
-		return ItemStackJS.of(minecraftPlayer.inventory.getCarried());
+		AbstractContainerMenu menu = minecraftPlayer.containerMenu;
+		if (menu == null) return ItemStackJS.of(ItemStack.EMPTY);
+		return ItemStackJS.of(menu.getCarried());
 	}
 
 	public void setMouseItem(ItemStackJS item) {
-		minecraftPlayer.inventory.setCarried(item.getItemStack());
+		AbstractContainerMenu menu = minecraftPlayer.containerMenu;
+		if (menu != null) {
+			menu.setCarried(item.getItemStack());
+		}
 	}
 
 	@Override

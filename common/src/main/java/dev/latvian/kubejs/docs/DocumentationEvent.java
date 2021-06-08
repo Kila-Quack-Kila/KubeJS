@@ -1,7 +1,7 @@
 package dev.latvian.kubejs.docs;
 
-import me.shedaniel.architectury.event.Event;
-import me.shedaniel.architectury.event.EventFactory;
+import dev.architectury.event.Event;
+import dev.architectury.event.EventFactory;
 
 import java.util.HashMap;
 import java.util.Map;

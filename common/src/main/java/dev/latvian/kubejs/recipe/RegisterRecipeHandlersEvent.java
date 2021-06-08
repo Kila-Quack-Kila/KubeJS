@@ -1,13 +1,13 @@
 package dev.latvian.kubejs.recipe;
 
+import dev.architectury.annotations.ForgeEvent;
+import dev.architectury.event.Event;
+import dev.architectury.event.EventFactory;
+import dev.architectury.registry.registries.Registries;
 import dev.latvian.kubejs.KubeJS;
 import dev.latvian.kubejs.KubeJSRegistries;
 import dev.latvian.kubejs.recipe.minecraft.ShapedRecipeJS;
 import dev.latvian.kubejs.recipe.minecraft.ShapelessRecipeJS;
-import me.shedaniel.architectury.ForgeEvent;
-import me.shedaniel.architectury.event.Event;
-import me.shedaniel.architectury.event.EventFactory;
-import me.shedaniel.architectury.registry.Registries;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 

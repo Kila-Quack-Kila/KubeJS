@@ -1,12 +1,12 @@
 package dev.latvian.kubejs.recipe;
 
+import dev.architectury.platform.Platform;
 import dev.latvian.kubejs.recipe.minecraft.CookingRecipeJS;
 import dev.latvian.kubejs.recipe.minecraft.SmithingRecipeJS;
 import dev.latvian.kubejs.recipe.minecraft.StonecuttingRecipeJS;
 import dev.latvian.kubejs.recipe.mod.AE2GrinderRecipeJS;
 import dev.latvian.kubejs.recipe.mod.BotanyPotsCropRecipeJS;
 import dev.latvian.kubejs.recipe.mod.MATagRecipeJS;
-import me.shedaniel.architectury.platform.Platform;
 import net.minecraft.resources.ResourceLocation;
 
 /**

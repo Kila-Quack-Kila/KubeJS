@@ -2,6 +2,8 @@ package dev.latvian.kubejs;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import dev.architectury.registry.block.ToolType;
+import dev.architectury.registry.registries.Registrar;
 import dev.latvian.kubejs.bindings.BlockWrapper;
 import dev.latvian.kubejs.bindings.FacingWrapper;
 import dev.latvian.kubejs.bindings.IngredientWrapper;
@@ -35,8 +37,6 @@ import dev.latvian.kubejs.util.MapJS;
 import dev.latvian.kubejs.util.UUIDUtilsJS;
 import dev.latvian.kubejs.util.UtilsJS;
 import dev.latvian.mods.rhino.util.wrap.TypeWrappers;
-import me.shedaniel.architectury.registry.Registry;
-import me.shedaniel.architectury.registry.ToolType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CollectionTag;
 import net.minecraft.nbt.CompoundTag;
@@ -248,7 +248,7 @@ public class BuiltinKubeJSPlugin extends KubeJSPlugin {
 		typeWrappers.register(MaterialJS.class, MaterialListJS.INSTANCE::of);
 	}
 
-	private static <T> void wrapRegistry(TypeWrappers typeWrappers, Class<T> c, Registry<T> registry) {
+	private static <T> void wrapRegistry(TypeWrappers typeWrappers, Class<T> c, Registrar<T> registry) {
 		typeWrappers.register(c, o -> {
 			if (o == null) {
 				return null;

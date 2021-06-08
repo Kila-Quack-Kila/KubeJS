@@ -1,5 +1,6 @@
 package dev.latvian.kubejs.client;
 
+import dev.architectury.hooks.PackRepositoryHooks;
 import dev.latvian.kubejs.KubeJS;
 import dev.latvian.kubejs.KubeJSCommon;
 import dev.latvian.kubejs.KubeJSEvents;
@@ -12,9 +13,9 @@ import dev.latvian.kubejs.util.MapJS;
 import dev.latvian.kubejs.util.Overlay;
 import dev.latvian.kubejs.world.ClientWorldJS;
 import dev.latvian.kubejs.world.WorldJS;
-import me.shedaniel.architectury.hooks.PackRepositoryHooks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
@@ -43,7 +44,7 @@ public class KubeJSClient extends KubeJSCommon {
 
 		new KubeJSClientEventHandler().init();
 		PackRepository list = Minecraft.getInstance().getResourcePackRepository();
-		PackRepositoryHooks.addSource(list, new KubeJSResourcePackFinder());
+		PackRepositoryHooks.addSource(list, new KubeJSResourcePackFinder(PackType.CLIENT_RESOURCES));
 		setup();
 	}
 

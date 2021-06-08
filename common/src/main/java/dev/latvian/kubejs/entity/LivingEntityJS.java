@@ -1,10 +1,10 @@
 package dev.latvian.kubejs.entity;
 
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.latvian.kubejs.docs.MinecraftClass;
 import dev.latvian.kubejs.item.ItemStackJS;
 import dev.latvian.kubejs.item.ingredient.IngredientJS;
 import dev.latvian.kubejs.world.WorldJS;
-import me.shedaniel.architectury.annotations.ExpectPlatform;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -224,10 +224,6 @@ public class LivingEntityJS extends EntityJS {
 
 	public void setMovementSpeed(float speed) {
 		minecraftLivingEntity.setSpeed(speed);
-	}
-
-	public boolean canEntityBeSeen(EntityJS entity) {
-		return minecraftLivingEntity.canSee(entity.minecraftEntity);
 	}
 
 	public float getAbsorptionAmount() {

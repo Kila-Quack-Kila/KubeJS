@@ -1,12 +1,14 @@
 package dev.latvian.kubejs.net;
 
+import dev.architectury.networking.NetworkManager;
 import dev.latvian.kubejs.KubeJS;
-import me.shedaniel.architectury.networking.NetworkManager.PacketContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
+
+import static dev.architectury.networking.NetworkManager.*;
 
 /**
  * @author LatvianModder

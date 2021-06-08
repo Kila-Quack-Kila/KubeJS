@@ -1,8 +1,8 @@
 package dev.latvian.kubejs.integration.techreborn;
 
+import dev.architectury.platform.Platform;
 import dev.latvian.kubejs.KubeJSInitializer;
 import dev.latvian.kubejs.recipe.RegisterRecipeHandlersEvent;
-import me.shedaniel.architectury.platform.Platform;
 import net.minecraft.resources.ResourceLocation;
 
 public class TechRebornIntegration implements KubeJSInitializer {

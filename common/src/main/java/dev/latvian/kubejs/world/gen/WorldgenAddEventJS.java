@@ -3,19 +3,22 @@ package dev.latvian.kubejs.world.gen;
 import dev.latvian.kubejs.event.StartupEventJS;
 import dev.latvian.kubejs.util.ListJS;
 import dev.latvian.kubejs.util.UtilsJS;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.SerializationTags;
-import net.minecraft.util.UniformInt;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RangeDecoratorConfiguration;
+import net.minecraft.world.level.levelgen.heightproviders.UniformHeight;
 import net.minecraft.world.level.levelgen.placement.ChanceDecoratorConfiguration;
 import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
@@ -63,7 +66,7 @@ public class WorldgenAddEventJS extends StartupEventJS {
 			}
 
 			if (s.startsWith("#")) {
-				RuleTest tagTest = new TagMatchTest(SerializationTags.getInstance().getBlocks().getTag(new ResourceLocation(s.substring(1))));
+				RuleTest tagTest = new TagMatchTest(SerializationTags.getInstance().getOrEmpty(Registry.BLOCK_REGISTRY).getTag(new ResourceLocation(s.substring(1))));
 				ruleTest.list.add(invert ? new InvertRuleTest(tagTest) : tagTest);
 			} else {
 				BlockState bs = UtilsJS.parseBlockState(s);
@@ -74,13 +77,13 @@ public class WorldgenAddEventJS extends StartupEventJS {
 
 		RuleTest ruleTest1 = ruleTest.list.isEmpty() ? OreConfiguration.Predicates.NATURAL_STONE : ruleTest;
 
-		ConfiguredFeature<OreConfiguration, ?> oreConfig = (properties.noSurface ? Feature.NO_SURFACE_ORE : Feature.ORE).configured(new OreConfiguration(properties.spawnsIn.blacklist ? new InvertRuleTest(ruleTest1) : ruleTest1, properties._block, properties.clusterMaxSize));
+		ConfiguredFeature<OreConfiguration, ?> oreConfig = (properties.noSurface ? Feature.SCATTERED_ORE : Feature.ORE).configured(new OreConfiguration(properties.spawnsIn.blacklist ? new InvertRuleTest(ruleTest1) : ruleTest1, properties._block, properties.clusterMaxSize));
 
-		oreConfig = UtilsJS.cast(oreConfig.decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(properties.minHeight, 0, properties.maxHeight))));
+		oreConfig = UtilsJS.cast(oreConfig.decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.aboveBottom(properties.minHeight), VerticalAnchor.aboveBottom(properties.maxHeight))))));
 		oreConfig = UtilsJS.cast(oreConfig.count(UniformInt.of(properties.clusterMinCount, properties.clusterMaxCount - properties.clusterMinCount)));
 
 		if (properties.chance > 0) {
-			oreConfig = UtilsJS.cast(oreConfig.chance(properties.chance));
+			oreConfig = UtilsJS.cast(oreConfig.rarity(properties.chance));
 		}
 
 		if (properties.squared) {
@@ -102,7 +105,7 @@ public class WorldgenAddEventJS extends StartupEventJS {
 			return;
 		}
 
-		addFeature(properties._worldgenLayer, Feature.LAKE.configured(new BlockStateConfiguration(properties._block)).decorated((FeatureDecorator.WATER_LAKE).configured(new ChanceDecoratorConfiguration(properties.chance))));
+		addFeature(properties._worldgenLayer, Feature.LAKE.configured(new BlockStateConfiguration(properties._block)).decorated((FeatureDecorator.LAVA_LAKE).configured(new ChanceDecoratorConfiguration(properties.chance))));
 	}
 
 	public void addSpawn(Consumer<AddSpawnProperties> p) {
