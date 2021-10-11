@@ -4,7 +4,6 @@ import dev.architectury.platform.Platform;
 import dev.latvian.kubejs.recipe.minecraft.CookingRecipeJS;
 import dev.latvian.kubejs.recipe.minecraft.SmithingRecipeJS;
 import dev.latvian.kubejs.recipe.minecraft.StonecuttingRecipeJS;
-import dev.latvian.kubejs.recipe.mod.AE2GrinderRecipeJS;
 import dev.latvian.kubejs.recipe.mod.BotanyPotsCropRecipeJS;
 import dev.latvian.kubejs.recipe.mod.MATagRecipeJS;
 import net.minecraft.resources.ResourceLocation;
@@ -50,8 +49,6 @@ public class KubeJSRecipeEventHandler {
 			event.registerShaped(new ResourceLocation("dankstorage:upgrade"));
 		}
 
-		if (Platform.isModLoaded("appliedenergistics2")) {
-			event.register("appliedenergistics2:grinder", AE2GrinderRecipeJS::new);
-		}
+
 	}
 }
